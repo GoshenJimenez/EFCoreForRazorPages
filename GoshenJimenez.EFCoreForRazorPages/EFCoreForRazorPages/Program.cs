@@ -1,7 +1,14 @@
+using EFCoreForRazorPages.Infrastructure.Domain;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultDbContext");
+builder.Services.AddDbContext<DefaultDbContext>(options =>
+  options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 var app = builder.Build();
 

@@ -1,0 +1,14 @@
+﻿@page
+@model EFCoreForRazorPages.Pages.Manage.Roles.Index
+
+
+
+
+@{
+    foreach(var role in Model?.View?.Roles)
+    {
+        <div>@role.Name</div>
+    }
+}
+
+

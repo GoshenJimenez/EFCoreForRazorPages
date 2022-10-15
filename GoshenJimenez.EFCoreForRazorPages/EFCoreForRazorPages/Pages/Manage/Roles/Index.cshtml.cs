@@ -2,6 +2,7 @@ using EFCoreForRazorPages.Infrastructure.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using EFCoreForRazorPages.Infrastructure.Domain.Models;
+using System.Linq;
 
 namespace EFCoreForRazorPages.Pages.Manage.Roles
 {
@@ -20,12 +21,40 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
             View = View ?? new ViewModel();
         }
 
-        public void OnGet(int? pageIndex = 1, int? pageSize = 10)
+        public void OnGet(int? pageIndex = 1, int? pageSize = 10, string? sortBy = "", SortOrder sortOrder = SortOrder.Ascending)
         {
             var skip = (int)((pageIndex-1) * pageSize);
 
-            var query = _context.Roles;
+            var query = (IQueryable<Role>)_context.Roles;
             var totalRows = query.Count();
+
+            if(!string.IsNullOrEmpty(sortBy))
+            {
+                if(sortBy.ToLower() == "name" && sortOrder == SortOrder.Ascending)
+                {
+                    query = query.OrderBy(a => a.Name);
+                }
+                else if(sortBy.ToLower() == "name" && sortOrder == SortOrder.Descending)
+                {
+                    query = query.OrderByDescending(a => a.Name);
+                }
+                else if (sortBy.ToLower() == "description" && sortOrder == SortOrder.Ascending)
+                {
+                    query = query.OrderBy(a => a.Description);
+                }
+                else if (sortBy.ToLower() == "description" && sortOrder == SortOrder.Descending)
+                {
+                    query = query.OrderByDescending(a => a.Description);
+                }
+                else if (sortBy.ToLower() == "abbreviation" && sortOrder == SortOrder.Ascending)
+                {
+                    query = _context.Roles.OrderBy(a => a.Abbreviation);
+                }
+                else if (sortBy.ToLower() == "abbreviation" && sortOrder == SortOrder.Descending)
+                {
+                    query = query.OrderByDescending(a => a.Abbreviation);
+                }
+            }
 
             var roles =     query
                             .Skip(skip)
@@ -37,7 +66,9 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
                 Items = roles,
                 PageIndex = pageIndex,
                 PageSize = pageSize,
-                TotalRows = totalRows
+                TotalRows = totalRows,
+                SortBy = sortBy,
+                SortOrder = sortOrder
             };
 
         }

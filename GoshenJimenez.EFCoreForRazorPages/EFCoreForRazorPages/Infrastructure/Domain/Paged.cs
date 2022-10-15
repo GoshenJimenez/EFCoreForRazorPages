@@ -8,6 +8,8 @@ namespace EFCoreForRazorPages.Infrastructure.Domain
         public List<T>? Items { get; set; }
         public int? PageIndex { get; set; }
         public int? PageSize { get; set; }
+        public SortOrder SortOrder { get; set; }
+        public string? SortBy { get; set; }
         public int? PageCount {
             get
             {

@@ -33,14 +33,14 @@
                 @{
                     if(Model?.View?.Roles.PageIndex > 1)
                     {
-                        <li class="page-item"><a class="page-link" href="/manage/roles?pageIndex=@(Model?.View?.Roles.PageIndex-1)&pageSize=@(Model?.View?.Roles.PageSize)">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="/manage/roles?pageIndex=@(Model?.View?.Roles.PageIndex-1)&pageSize=@(Model?.View?.Roles.PageSize)&sortBy=@(Model?.View?.Roles.SortBy)&sortOrder=@(Model?.View?.Roles.SortOrder)">Previous</a></li>
                     }
 
                     <li class="page-item"><span class="page-link">page @Model?.View?.Roles.PageIndex of @Model?.View?.Roles.PageCount (@Model?.View?.Roles.TotalRows total rows)</span></li>
 
 
                     if(Model?.View?.Roles.PageIndex < Model?.View?.Roles.PageCount){
-                        <li class="page-item"><a class="page-link" href="/manage/roles?pageIndex=@(Model?.View?.Roles.PageIndex+1)&pageSize=@(Model?.View?.Roles.PageSize)">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="/manage/roles?pageIndex=@(Model?.View?.Roles.PageIndex+1)&pageSize=@(Model?.View?.Roles.PageSize)&sortBy=@(Model?.View?.Roles.SortBy)&sortOrder=@(Model?.View?.Roles.SortOrder)">Next</a></li>
                     }
                 }
             </ul>

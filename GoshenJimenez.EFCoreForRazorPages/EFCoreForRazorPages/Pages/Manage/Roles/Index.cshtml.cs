@@ -20,14 +20,31 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
             View = View ?? new ViewModel();
         }
 
-        public void OnGet()
+        public void OnGet(int? pageIndex = 1, int? pageSize = 10)
         {
-            View.Roles = _context.Roles.ToList();
+            var skip = (int)((pageIndex-1) * pageSize);
+
+            var query = _context.Roles;
+            var totalRows = query.Count();
+
+            var roles =     query
+                            .Skip(skip)
+                            .Take((int)pageSize)
+                            .ToList();
+
+            View.Roles = new Paged<Role>()
+            {
+                Items = roles,
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                TotalRows = totalRows
+            };
+
         }
 
         public class ViewModel
         {
-            public List<Role>? Roles { get; set; }
+            public Paged<Role>? Roles { get; set; }
         }
     }
 }

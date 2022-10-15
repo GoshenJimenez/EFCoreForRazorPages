@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using EFCoreForRazorPages.Infrastructure.Domain.Models;
 using System.Linq;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace EFCoreForRazorPages.Pages.Manage.Roles
 {
@@ -21,11 +22,21 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
             View = View ?? new ViewModel();
         }
 
-        public void OnGet(int? pageIndex = 1, int? pageSize = 10, string? sortBy = "", SortOrder sortOrder = SortOrder.Ascending)
+        public void OnGet(int? pageIndex = 1, int? pageSize = 10, string? sortBy = "", SortOrder sortOrder = SortOrder.Ascending, string? keyword = "" )
         {
             var skip = (int)((pageIndex-1) * pageSize);
 
             var query = (IQueryable<Role>)_context.Roles;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                query = query.Where(a => 
+                            a.Name != null && a.Name.ToLower().Contains(keyword.ToLower())
+                        ||  a.Description != null && a.Description.ToLower().Contains(keyword.ToLower())
+                        ||  a.Abbreviation != null && a.Abbreviation.ToLower().Contains(keyword.ToLower())
+                );
+            }  
+
             var totalRows = query.Count();
 
             if(!string.IsNullOrEmpty(sortBy))

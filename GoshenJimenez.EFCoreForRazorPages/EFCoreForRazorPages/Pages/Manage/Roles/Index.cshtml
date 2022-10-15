@@ -2,13 +2,34 @@
 @model EFCoreForRazorPages.Pages.Manage.Roles.Index
 
 
-
-
+<h3>Roles</h3>
 @{
-    foreach(var role in Model?.View?.Roles)
+    if (Model.View != null && Model.View.Roles != null && Model.View.Roles.Count > 0)
     {
-        <div>@role.Name</div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Abbreviation</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var role in Model?.View?.Roles)
+                    {
+                        <tr>
+                            <th scope="row">@role.Name</th>
+                            <td>@role.Description</td>
+                            <td>@role.Abbreviation</td>
+                        </tr>
+                    }            
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div>There are no records to show.</div>
     }
 }
-
-

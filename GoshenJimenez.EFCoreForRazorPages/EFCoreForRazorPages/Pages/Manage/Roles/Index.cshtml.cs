@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using EFCoreForRazorPages.Infrastructure.Domain.Models;
 using System.Linq;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
+using Microsoft.Extensions.Options;
 
 namespace EFCoreForRazorPages.Pages.Manage.Roles
 {
@@ -26,7 +27,7 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
         {
             var skip = (int)((pageIndex-1) * pageSize);
 
-            var query = (IQueryable<Role>)_context.Roles;
+            var query = _context.Roles.AsQueryable();
 
             if (!string.IsNullOrEmpty(keyword))
             {
@@ -67,7 +68,7 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
                 }
             }
 
-            var roles =     query
+            var roles = query
                             .Skip(skip)
                             .Take((int)pageSize)
                             .ToList();
@@ -79,7 +80,8 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
                 PageSize = pageSize,
                 TotalRows = totalRows,
                 SortBy = sortBy,
-                SortOrder = sortOrder
+                SortOrder = sortOrder,
+                Keyword = keyword
             };
 
         }

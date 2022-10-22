@@ -8,6 +8,7 @@ namespace EFCoreForRazorPages.Infrastructure.Domain
         public List<T>? Items { get; set; }
         public int? PageIndex { get; set; }
         public int? PageSize { get; set; }
+        public string? Keyword { get; set; }
         public SortOrder SortOrder { get; set; }
         public string? SortBy { get; set; }
         public int? PageCount {
@@ -15,7 +16,14 @@ namespace EFCoreForRazorPages.Infrastructure.Domain
             {
                 if(this.Items != null && this.Items.Count > 0 && this.TotalRows != null)
                 {
-                    return (int?)Math.Ceiling((decimal)(TotalRows / this.PageSize ?? 10));
+                    var result = (int?)Math.Ceiling((decimal)(TotalRows / this.PageSize ?? 10));
+
+                    if(result != null && result < 1)
+                    {
+                        return 1;
+                    }
+                    
+                    return result;
                 };
 
                 return 0;

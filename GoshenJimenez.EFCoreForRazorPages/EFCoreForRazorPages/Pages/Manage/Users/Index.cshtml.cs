@@ -21,7 +21,7 @@ namespace EFCoreForRazorPages.Pages.Manage.Users
             View = View ?? new ViewModel();
         }
 
-        public void OnGet(int? pageIndex = 1, int? pageSize = 10, string? sortBy = "", SortOrder sortOrder = SortOrder.Ascending, string? keyword = "")
+        public void OnGet(int? pageIndex = 1, int? pageSize = 10, string? sortBy = "", SortOrder sortOrder = SortOrder.Ascending, string? keyword = "", Guid? roleId = null)
         {
             var skip = (int)((pageIndex - 1) * pageSize);
 
@@ -35,6 +35,11 @@ namespace EFCoreForRazorPages.Pages.Manage.Users
                             a.Name != null && a.Name.ToLower().Contains(keyword.ToLower())
                         || a.EmailAddress != null && a.EmailAddress.ToLower().Contains(keyword.ToLower())
                 );
+            }
+
+            if(roleId != null)
+            {
+                query = query.Where(a => a.RoleId == roleId); 
             }
 
             var totalRows = query.Count();
@@ -64,6 +69,12 @@ namespace EFCoreForRazorPages.Pages.Manage.Users
                             .Take((int)pageSize)
                             .ToList();
 
+            if (roleId != null)
+            {
+                View.RoleId = roleId;
+                View.RoleName = users.FirstOrDefault()?.Role?.Name;
+            }
+
             View.Users = new Paged<User>()
             {
                 Items = users,
@@ -72,7 +83,7 @@ namespace EFCoreForRazorPages.Pages.Manage.Users
                 TotalRows = totalRows,
                 SortBy = sortBy,
                 SortOrder = sortOrder,
-                Keyword = keyword
+                Keyword = keyword,               
             };
         }
 
@@ -100,6 +111,8 @@ namespace EFCoreForRazorPages.Pages.Manage.Users
         public class ViewModel
         {
             public Paged<User>? Users { get; set; }
+            public Guid? RoleId { get; set; }
+            public string? RoleName { get; set; }
         }
 
 

@@ -6,7 +6,7 @@
 
 <div class="search">
     <i class="bi bi-search"></i>
-    <input type="text" class="form-control" placeholder="Search" id="search">
+    <input type="text" class="form-control" placeholder="Search" id="search" value="@Model?.View?.Users?.Keyword">
 </div>
 
 <div class="row">
@@ -34,6 +34,12 @@
         <div class="form-group">
             <label for="">Role</label>
             <select class="form-control select2" id="roleId">
+                @{
+                    if(Model.View.RoleId != null)
+                    {
+                        <option selected value="@Model.View.RoleId">@Model.View.RoleName</option>
+                    }
+                }
             </select>
         </div>
     </div>
@@ -71,7 +77,7 @@
                 @{
                     if (Model?.View?.Users.PageIndex > 1)
                     {
-                        <li class="page-item"><a class="page-link" href="/manage/users?pageIndex=@(Model?.View?.Users.PageIndex-1)&pageSize=@(Model?.View?.Users.PageSize)&sortBy=@(Model?.View?.Users.SortBy)&sortOrder=@(Model?.View?.Users.SortOrder)">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="/manage/users?pageIndex=@(Model?.View?.Users.PageIndex-1)&pageSize=@(Model?.View?.Users.PageSize)&sortBy=@(Model?.View?.Users.SortBy)&sortOrder=@(Model?.View?.Users.SortOrder)&roleId=@(Model?.View?.RoleId)">Previous</a></li>
                     }
 
                     <li class="page-item"><span class="page-link">page @Model?.View?.Users.PageIndex of @Model?.View?.Users.PageCount (@Model?.View?.Users.TotalRows total rows)</span></li>
@@ -79,7 +85,7 @@
 
                     if (Model?.View?.Users.PageIndex < Model?.View?.Users.PageCount)
                     {
-                        <li class="page-item"><a class="page-link" href="/manage/users?pageIndex=@(Model?.View?.Users.PageIndex+1)&pageSize=@(Model?.View?.Users.PageSize)&sortBy=@(Model?.View?.Users.SortBy)&sortOrder=@(Model?.View?.Users.SortOrder)">Next</a></li>
+                        <li class="page-item"><a class="page-link" href="/manage/users?pageIndex=@(Model?.View?.Users.PageIndex+1)&pageSize=@(Model?.View?.Users.PageSize)&sortBy=@(Model?.View?.Users.SortBy)&sortOrder=@(Model?.View?.Users.SortOrder)&roleId=@(Model?.View?.RoleId)">Next</a></li>
                     }
                 }
             </ul>
@@ -114,16 +120,20 @@
 
         $("#search").keyup(function (event) {
             if (event.keyCode === 13) {
-                window.location = "/manage/users?keyword=" + $("#search").val();
+                window.location = "/manage/users?keyword=" + $("#search").val() + "&roleId=" + $("#roleId").val();
             }
         });
 
         $("#sortBy").change(function () {
-            window.location = "/manage/users?keyword=@(Model.View.Users.Keyword)&sortBy=" + $("#sortBy").val() + "&sortOrder=" + $("#sortOrder").val();
+            window.location = "/manage/users?keyword=@(Model.View.Users.Keyword)&sortBy=" + $("#sortBy").val() + "&sortOrder=" + $("#sortOrder").val() + "&roleId=" + $("#roleId").val();
         });
 
         $("#sortOrder").change(function () {
-            window.location = "/manage/users?keyword=@(Model.View.Users.Keyword)&sortBy=" + $("#sortBy").val() + "&sortOrder=" + $("#sortOrder").val();
+            window.location = "/manage/users?keyword=@(Model.View.Users.Keyword)&sortBy=" + $("#sortBy").val() + "&sortOrder=" + $("#sortOrder").val() + "&roleId=" + $("#roleId").val();
+        });
+
+        $("#roleId").change(function () {
+            window.location = "/manage/users?keyword=@(Model.View.Users.Keyword)&sortBy=" + $("#sortBy").val() + "&sortOrder=" + $("#sortOrder").val() + "&roleId=" + $("#roleId").val();
         });
     </script>
 }

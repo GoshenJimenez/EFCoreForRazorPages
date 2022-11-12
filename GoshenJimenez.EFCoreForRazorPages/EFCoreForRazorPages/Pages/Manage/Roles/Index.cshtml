@@ -48,14 +48,14 @@
                 </thead>
                 <tbody>
                 @{
-                foreach (var role in Model?.View?.Roles.Items)
-                {
-                            <tr>
-                                <th scope="row">@role.Name</th>
-                                <td>@role.Description</td>
-                                <td>@role.Abbreviation</td>
-                            </tr>
-                }            
+                    foreach (var role in Model?.View?.Roles.Items)
+                    {
+                        <tr>
+                            <th scope="row">@role.Name</th>
+                            <td>@role.Description</td>
+                            <td>@role.Abbreviation</td>
+                        </tr>
+                    }            
                 }
                 </tbody>
     </table>
@@ -63,24 +63,25 @@
     <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     @{
-                    if(Model?.View?.Roles.PageIndex > 1)
-                    {
-                                 <li class="page-item"><a class="page-link" href="/manage/roles?pageIndex=@(Model?.View?.Roles.PageIndex-1)&pageSize=@(Model?.View?.Roles.PageSize)&sortBy=@(Model?.View?.Roles.SortBy)&sortOrder=@(Model?.View?.Roles.SortOrder)">Previous</a></li>
-                    }
+                        if(Model?.View?.Roles.PageIndex > 1)
+                        {
+                           <li class="page-item"><a class="page-link" href="/manage/roles?pageIndex=@(Model?.View?.Roles.PageIndex-1)&pageSize=@(Model?.View?.Roles.PageSize)&sortBy=@(Model?.View?.Roles.SortBy)&sortOrder=@(Model?.View?.Roles.SortOrder)">Previous</a></li>
+                        }
 
-                            <li class="page-item"><span class="page-link">page @Model?.View?.Roles.PageIndex of @Model?.View?.Roles.PageCount (@Model?.View?.Roles.TotalRows total rows)</span></li>
+                           <li class="page-item"><span class="page-link">page @Model?.View?.Roles.PageIndex of @Model?.View?.Roles.PageCount (@Model?.View?.Roles.TotalRows total rows)</span></li>
 
 
-                    if(Model?.View?.Roles.PageIndex < Model?.View?.Roles.PageCount){
-                                 <li class="page-item"><a class="page-link" href="/manage/roles?pageIndex=@(Model?.View?.Roles.PageIndex+1)&pageSize=@(Model?.View?.Roles.PageSize)&sortBy=@(Model?.View?.Roles.SortBy)&sortOrder=@(Model?.View?.Roles.SortOrder)">Next</a></li>
-                    }
+                        if(Model?.View?.Roles.PageIndex < Model?.View?.Roles.PageCount)
+                        {
+                           <li class="page-item"><a class="page-link" href="/manage/roles?pageIndex=@(Model?.View?.Roles.PageIndex+1)&pageSize=@(Model?.View?.Roles.PageSize)&sortBy=@(Model?.View?.Roles.SortBy)&sortOrder=@(Model?.View?.Roles.SortOrder)">Next</a></li>
+                        }
                     }
                 </ul>
     </nav>
     }
     else
     {
-    <div>There are no records to show.</div>
+        <div>There are no records to show.</div>
     }
 }
 
@@ -92,7 +93,7 @@
                 window.location = "/manage/roles?keyword=" + $("#search").val();
             }
         });
-
+        
         $("#sortBy").change(function () {
             window.location = "/manage/roles?keyword=@(Model.View.Roles.Keyword)&sortBy=" + $("#sortBy").val() + "&sortOrder=" + $("#sortOrder").val();
         });

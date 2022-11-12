@@ -7,8 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultDbContext");
-builder.Services.AddDbContext<DefaultDbContext>(options =>
-  options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+//builder.Services.AddDbContext<DefaultDbContext>(options =>
+//  options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddDbContext<DefaultDbContext>((serviceProvider, dbContextBuilder) =>
+{ 
+    dbContextBuilder.UseSqlServer(connectionString);
+});
 
 var app = builder.Build();
 

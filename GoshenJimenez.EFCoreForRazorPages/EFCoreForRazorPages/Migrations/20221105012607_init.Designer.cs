@@ -3,6 +3,7 @@ using System;
 using EFCoreForRazorPages.Infrastructure.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -11,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreForRazorPages.Migrations
 {
     [DbContext(typeof(DefaultDbContext))]
-    [Migration("20221022010913_init")]
+    [Migration("20221105012607_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,22 +20,24 @@ namespace EFCoreForRazorPages.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.9")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("EFCoreForRazorPages.Infrastructure.Domain.Models.Role", b =>
                 {
                     b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Abbreviation")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -68,22 +71,22 @@ namespace EFCoreForRazorPages.Migrations
                 {
                     b.Property<Guid?>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("EmailAddress")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("RoleId")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -95,7 +98,7 @@ namespace EFCoreForRazorPages.Migrations
                         new
                         {
                             Id = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac0"),
-                            DateOfBirth = new DateTime(2022, 10, 22, 9, 9, 13, 346, DateTimeKind.Local).AddTicks(2244),
+                            DateOfBirth = new DateTime(2022, 11, 5, 9, 26, 7, 790, DateTimeKind.Local).AddTicks(2075),
                             EmailAddress = "avengeant@mailinator.com",
                             Gender = 1,
                             Name = "Ajani",
@@ -104,7 +107,7 @@ namespace EFCoreForRazorPages.Migrations
                         new
                         {
                             Id = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac1"),
-                            DateOfBirth = new DateTime(2022, 10, 22, 9, 9, 13, 346, DateTimeKind.Local).AddTicks(2256),
+                            DateOfBirth = new DateTime(2022, 11, 5, 9, 26, 7, 790, DateTimeKind.Local).AddTicks(2086),
                             EmailAddress = "lvess@mailinator.com",
                             Gender = 2,
                             Name = "Liliana",
@@ -113,7 +116,7 @@ namespace EFCoreForRazorPages.Migrations
                         new
                         {
                             Id = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac2"),
-                            DateOfBirth = new DateTime(2022, 10, 22, 9, 9, 13, 346, DateTimeKind.Local).AddTicks(2259),
+                            DateOfBirth = new DateTime(2022, 11, 5, 9, 26, 7, 790, DateTimeKind.Local).AddTicks(2088),
                             EmailAddress = "ktide@mailinator.com",
                             Gender = 2,
                             Name = "Kiora",

@@ -76,9 +76,32 @@ namespace EFCoreForRazorPages.Pages.Manage.Users
             };
         }
 
+        public JsonResult? OnGetRolesLookup(int pageIndex = 1, string? keyword = "", int pageSize = 10)
+        {
+
+            var query = _context.Roles.AsQueryable();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                query = query.Where(a =>
+                            a.Name != null && a.Name.ToLower().StartsWith(keyword.ToLower())
+                );
+            }
+
+            return new JsonResult(query?.Select(a => new LookupDto.Result()
+            {
+                Id = a.Id.ToString(),
+                Text = a.Name
+            })
+            .OrderBy(a => a.Text)
+            .GetLookupPaged(pageIndex, pageSize));
+        }
+
         public class ViewModel
         {
             public Paged<User>? Users { get; set; }
         }
+
+
     }
 }

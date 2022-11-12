@@ -30,7 +30,13 @@
             </select>
         </div>
     </div>
-
+    <div class="col-3">
+        <div class="form-group">
+            <label for="">Role</label>
+            <select class="form-control select2" id="roleId">
+            </select>
+        </div>
+    </div>
 </div>
 
 
@@ -88,6 +94,24 @@
 @section Scripts
     {
     <script>
+        $(document).ready(function () {
+            $('#roleId').select2({
+                ajax: {
+                    url: '?handler=RolesLookup',
+                    headers: { "RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+                    data: function (params) {
+                        var query = {
+                            keyword: params.term,
+                            page: params.page || 1
+                        }
+
+                        return query;
+                    }
+                }
+            });
+        });
+
+
         $("#search").keyup(function (event) {
             if (event.keyCode === 13) {
                 window.location = "/manage/users?keyword=" + $("#search").val();

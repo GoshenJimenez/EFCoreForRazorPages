@@ -36,7 +36,7 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
                         ||  a.Description != null && a.Description.ToLower().Contains(keyword.ToLower())
                         ||  a.Abbreviation != null && a.Abbreviation.ToLower().Contains(keyword.ToLower())
                 );
-            }  
+            }
 
             var totalRows = query.Count();
 

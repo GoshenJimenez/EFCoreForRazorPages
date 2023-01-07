@@ -48,6 +48,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Description</th>
                         <th scope="col">Abbreviation</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,6 +59,11 @@
                             <th scope="row">@role.Name</th>
                             <td>@role.Description</td>
                             <td>@role.Abbreviation</td>
+                            <td>
+                                <a href="~/manage/roles/update?id=@role.Id" class="btn btn-secondary">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                            </td>
                         </tr>
                     }            
                 }

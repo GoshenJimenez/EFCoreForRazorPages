@@ -5,6 +5,7 @@ using EFCoreForRazorPages.Infrastructure.Domain.Models;
 using System.Linq;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 using Microsoft.Extensions.Options;
+using EFCoreForRazorPages.Infrastructure.Security;
 
 namespace EFCoreForRazorPages.Pages.Manage.Roles
 {
@@ -23,8 +24,13 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
             View = View ?? new ViewModel();
         }
 
-        public void OnGet(int? pageIndex = 1, int? pageSize = 10, string? sortBy = "", SortOrder sortOrder = SortOrder.Ascending, string? keyword = "" )
+        public IActionResult OnGet(int? pageIndex = 1, int? pageSize = 10, string? sortBy = "", SortOrder sortOrder = SortOrder.Ascending, string? keyword = "" )
         {
+            if(this.User.Role() != "Admin")
+            {
+                return Unauthorized();
+            }
+
             var skip = (int)((pageIndex-1) * pageSize);
 
             var query = _context.Roles.AsQueryable();
@@ -84,6 +90,7 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
                 Keyword = keyword
             };
 
+            return Page();
         }
 
         public class ViewModel

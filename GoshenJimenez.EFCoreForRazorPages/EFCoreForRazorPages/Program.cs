@@ -1,4 +1,5 @@
 using EFCoreForRazorPages.Infrastructure.Domain;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,30 @@ builder.Services.AddDbContext<DefaultDbContext>((serviceProvider, dbContextBuild
 { 
     dbContextBuilder.UseSqlServer(connectionString);
 });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+    {
+        options.LoginPath = "/account/login";
+        options.LogoutPath = "/account/logout";
+    });
+
+#region Session
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(builder.Configuration.GetValue<int>("Session:IdleTimeout"));
+    options.Cookie.Name = builder.Configuration.GetValue<string>("Session:CookieName");
+    options.Cookie.HttpOnly = builder.Configuration.GetValue<bool>("Session:CookieHttpOnly");
+    options.Cookie.IsEssential = builder.Configuration.GetValue<bool>("Session:CookieIsEssential");
+});
+
+builder.Services.AddHttpContextAccessor();
+
+#endregion
+
 
 var app = builder.Build();
 
@@ -29,8 +54,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
+app.UseSession();
+
 app.MapRazorPages();
+
+app.UseStatusCodePages();
 
 app.Run();

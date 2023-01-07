@@ -96,7 +96,7 @@ namespace EFCoreForRazorPages.Migrations
                         new
                         {
                             Id = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac0"),
-                            DateOfBirth = new DateTime(2022, 11, 5, 9, 26, 7, 790, DateTimeKind.Local).AddTicks(2075),
+                            DateOfBirth = new DateTime(2023, 1, 7, 10, 17, 6, 340, DateTimeKind.Local).AddTicks(651),
                             EmailAddress = "avengeant@mailinator.com",
                             Gender = 1,
                             Name = "Ajani",
@@ -105,7 +105,7 @@ namespace EFCoreForRazorPages.Migrations
                         new
                         {
                             Id = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac1"),
-                            DateOfBirth = new DateTime(2022, 11, 5, 9, 26, 7, 790, DateTimeKind.Local).AddTicks(2086),
+                            DateOfBirth = new DateTime(2023, 1, 7, 10, 17, 6, 458, DateTimeKind.Local).AddTicks(2468),
                             EmailAddress = "lvess@mailinator.com",
                             Gender = 2,
                             Name = "Liliana",
@@ -114,11 +114,108 @@ namespace EFCoreForRazorPages.Migrations
                         new
                         {
                             Id = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac2"),
-                            DateOfBirth = new DateTime(2022, 11, 5, 9, 26, 7, 790, DateTimeKind.Local).AddTicks(2088),
+                            DateOfBirth = new DateTime(2023, 1, 7, 10, 17, 6, 578, DateTimeKind.Local).AddTicks(7146),
                             EmailAddress = "ktide@mailinator.com",
                             Gender = 2,
                             Name = "Kiora",
                             RoleId = new Guid("1fb7085a-762f-440c-87de-59f75f85e935")
+                        });
+                });
+
+            modelBuilder.Entity("EFCoreForRazorPages.Infrastructure.Domain.Models.UserLogin", b =>
+                {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Key")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserLogins");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("06be8cb4-02de-4ab1-b574-49e017f5b255"),
+                            Key = "Password",
+                            Type = "General",
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac0"),
+                            Value = "$2a$11$.yd9h52TEt7R/Yi4ten5y.AkYhkQACzGTda18xpQt0j3vg2I0VXoK"
+                        },
+                        new
+                        {
+                            Id = new Guid("c6ea7aa9-e127-4c48-ab51-380422dc16a3"),
+                            Key = "IsActive",
+                            Type = "General",
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac0"),
+                            Value = "true"
+                        },
+                        new
+                        {
+                            Id = new Guid("11a37b16-c08f-40b6-bb2b-402fe0540d2b"),
+                            Key = "LoginRetries",
+                            Type = "General",
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac0"),
+                            Value = "0"
+                        },
+                        new
+                        {
+                            Id = new Guid("3b39a47d-2d91-4f7d-9fe5-e355c0f02b23"),
+                            Key = "Password",
+                            Type = "General",
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac1"),
+                            Value = "$2a$11$hI.W3KNJb2Vh2dknAr94luGYJK/bHO5DjmVBUWPOgokuiDGxVFD3O"
+                        },
+                        new
+                        {
+                            Id = new Guid("bed461fb-3563-46fc-9071-53f01bf6a311"),
+                            Key = "IsActive",
+                            Type = "General",
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac1"),
+                            Value = "true"
+                        },
+                        new
+                        {
+                            Id = new Guid("869de353-8700-4fa7-a305-23be87620815"),
+                            Key = "LoginRetries",
+                            Type = "General",
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac1"),
+                            Value = "0"
+                        },
+                        new
+                        {
+                            Id = new Guid("8e147fd8-4606-4420-a69c-56ac9e7c92ab"),
+                            Key = "Password",
+                            Type = "General",
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac2"),
+                            Value = "$2a$11$rcJcAXC43E88gnsl0kwssOntWGgyCR/hfg.C8QJjut8CDgH0lXrPS"
+                        },
+                        new
+                        {
+                            Id = new Guid("2a1ba526-1cf0-4672-8a9b-0dec239eb31c"),
+                            Key = "IsActive",
+                            Type = "General",
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac2"),
+                            Value = "true"
+                        },
+                        new
+                        {
+                            Id = new Guid("7b2b9f86-2dfd-442f-b859-0746e6fb6ca6"),
+                            Key = "LoginRetries",
+                            Type = "General",
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac2"),
+                            Value = "0"
                         });
                 });
 

@@ -35,7 +35,14 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
 
             if (string.IsNullOrEmpty(View.Description))
             {
-                ModelState.AddModelError("", "Description name cannot be blank.");
+                ModelState.AddModelError("", "Description cannot be blank.");
+                return Page();
+            }
+
+            var existingRole = _context?.Roles?.FirstOrDefault(a => a.Name.ToLower() == View.Name.ToLower());
+            if(existingRole != null)
+            {
+                ModelState.AddModelError("", "Role is already existing.");
                 return Page();
             }
 

@@ -26,11 +26,6 @@ namespace EFCoreForRazorPages.Pages.Manage.Roles
 
         public IActionResult OnGet(int? pageIndex = 1, int? pageSize = 10, string? sortBy = "", SortOrder sortOrder = SortOrder.Ascending, string? keyword = "" )
         {
-            if(this.User.Role() != "Admin")
-            {
-                return Unauthorized();
-            }
-
             var skip = (int)((pageIndex-1) * pageSize);
 
             var query = _context.Roles.AsQueryable();

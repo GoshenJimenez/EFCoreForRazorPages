@@ -49,6 +49,7 @@
                         <th scope="col">Description</th>
                         <th scope="col">Abbreviation</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,8 +61,13 @@
                             <td>@role.Description</td>
                             <td>@role.Abbreviation</td>
                             <td>
-                                <a href="~/manage/roles/update?id=@role.Id" class="btn btn-secondary">
+                                <a href="~/manage/roles/update?id=@role.Id" class="btn btn-primary">
                                     <i class="fa fa-pencil"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="~/manage/roles/delete?id=@role.Id" class="btn btn-danger">
+                                    <i class="fa fa-times"></i>
                                 </a>
                             </td>
                         </tr>

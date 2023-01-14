@@ -8,12 +8,13 @@
         <div class="card">
             <div class="card-body">
                 <form method="Post">
+                    <h3>Login</h3>
                   <div class="form-group">
-                    <label asp-for="View.EmailAddress">Name</label>
+                    <label asp-for="View.EmailAddress">UserName</label>
                     <input type="email" class="form-control" placeholder="Enter user name" asp-for="View.EmailAddress">
                   </div>
                   <div class="form-group">
-                    <label asp-for="View.Password">Description</label>
+                    <label asp-for="View.Password">Password</label>
                     <input type="password" class="form-control" placeholder="Enter password" asp-for="View.Password">
                   </div>
                   <div class="form-group alert-danger">                      

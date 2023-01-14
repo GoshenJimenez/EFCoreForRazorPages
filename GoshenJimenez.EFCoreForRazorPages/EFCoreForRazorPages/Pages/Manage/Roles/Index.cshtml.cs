@@ -6,9 +6,11 @@ using System.Linq;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 using Microsoft.Extensions.Options;
 using EFCoreForRazorPages.Infrastructure.Security;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EFCoreForRazorPages.Pages.Manage.Roles
 {
+    [Authorize(Roles = "Admin")]
     public class Index : PageModel
     {
         private ILogger<Index> _logger;

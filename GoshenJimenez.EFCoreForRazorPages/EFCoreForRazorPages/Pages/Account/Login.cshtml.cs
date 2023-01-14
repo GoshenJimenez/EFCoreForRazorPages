@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreForRazorPages.Pages.Account
 {
@@ -96,11 +97,14 @@ namespace EFCoreForRazorPages.Pages.Account
                             }
                             else
                             {
+                                var userRole = _context?.UserRoles?.Include(a => a.Role)!.FirstOrDefault(a => a.UserId == user.Id);
+
+
                                 List<Claim> claims = new()
                                 {
-                                    new Claim(ClaimTypes.NameIdentifier, (user.Id ?? Guid.NewGuid()).ToString()),
-                             
-                                    new Claim(ClaimTypes.Name, user.Name ?? "")
+                                    new Claim(ClaimTypes.NameIdentifier, (user.Id ?? Guid.NewGuid()).ToString()),                             
+                                    new Claim(ClaimTypes.Name, user.Name ?? ""),
+                                    new Claim(ClaimTypes.Role, userRole!.Role!.Name)
                                 };
 
                                 ClaimsPrincipal principal = new(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme));
@@ -111,6 +115,14 @@ namespace EFCoreForRazorPages.Pages.Account
                                     ExpiresUtc = DateTime.Now.AddMinutes(30)
                                 });
 
+                                if (userRole!.Role!.Name.ToLower() == "admin")
+                                {
+                                    return RedirectPermanent("/manage/roles");
+                                }
+                                else
+                                {
+                                    return RedirectPermanent("/manage/users");
+                                }
                             }
                         }
                     }

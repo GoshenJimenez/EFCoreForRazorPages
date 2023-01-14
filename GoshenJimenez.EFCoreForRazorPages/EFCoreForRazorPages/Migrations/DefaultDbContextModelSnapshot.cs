@@ -62,6 +62,13 @@ namespace EFCoreForRazorPages.Migrations
                             Abbreviation = "Std",
                             Description = "People who learn in school",
                             Name = "Student"
+                        },
+                        new
+                        {
+                            Id = new Guid("1fb7085a-762f-440c-87de-59f75f85e934"),
+                            Abbreviation = "Adm",
+                            Description = "Admin",
+                            Name = "Admin"
                         });
                 });
 
@@ -96,7 +103,7 @@ namespace EFCoreForRazorPages.Migrations
                         new
                         {
                             Id = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac0"),
-                            DateOfBirth = new DateTime(2023, 1, 7, 10, 17, 6, 340, DateTimeKind.Local).AddTicks(651),
+                            DateOfBirth = new DateTime(2023, 1, 14, 11, 12, 16, 575, DateTimeKind.Local).AddTicks(6781),
                             EmailAddress = "avengeant@mailinator.com",
                             Gender = 1,
                             Name = "Ajani",
@@ -105,7 +112,7 @@ namespace EFCoreForRazorPages.Migrations
                         new
                         {
                             Id = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac1"),
-                            DateOfBirth = new DateTime(2023, 1, 7, 10, 17, 6, 458, DateTimeKind.Local).AddTicks(2468),
+                            DateOfBirth = new DateTime(2023, 1, 14, 11, 12, 16, 689, DateTimeKind.Local).AddTicks(3091),
                             EmailAddress = "lvess@mailinator.com",
                             Gender = 2,
                             Name = "Liliana",
@@ -114,7 +121,7 @@ namespace EFCoreForRazorPages.Migrations
                         new
                         {
                             Id = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac2"),
-                            DateOfBirth = new DateTime(2023, 1, 7, 10, 17, 6, 578, DateTimeKind.Local).AddTicks(7146),
+                            DateOfBirth = new DateTime(2023, 1, 14, 11, 12, 16, 804, DateTimeKind.Local).AddTicks(1316),
                             EmailAddress = "ktide@mailinator.com",
                             Gender = 2,
                             Name = "Kiora",
@@ -147,15 +154,15 @@ namespace EFCoreForRazorPages.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("06be8cb4-02de-4ab1-b574-49e017f5b255"),
+                            Id = new Guid("d3fa581e-e674-48ee-a589-2b59f2d9a71f"),
                             Key = "Password",
                             Type = "General",
                             UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac0"),
-                            Value = "$2a$11$.yd9h52TEt7R/Yi4ten5y.AkYhkQACzGTda18xpQt0j3vg2I0VXoK"
+                            Value = "$2a$11$wVrXuBep6CiMXT7HX3JHMOLnw78eLiaUa8iXSZDPmXmQZT4hHGfE."
                         },
                         new
                         {
-                            Id = new Guid("c6ea7aa9-e127-4c48-ab51-380422dc16a3"),
+                            Id = new Guid("0eba2a2b-55d7-4423-9cc5-0109eb20a0b7"),
                             Key = "IsActive",
                             Type = "General",
                             UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac0"),
@@ -163,7 +170,7 @@ namespace EFCoreForRazorPages.Migrations
                         },
                         new
                         {
-                            Id = new Guid("11a37b16-c08f-40b6-bb2b-402fe0540d2b"),
+                            Id = new Guid("33d52442-4554-4dbb-b468-68f2dcb6e4dc"),
                             Key = "LoginRetries",
                             Type = "General",
                             UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac0"),
@@ -171,15 +178,15 @@ namespace EFCoreForRazorPages.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3b39a47d-2d91-4f7d-9fe5-e355c0f02b23"),
+                            Id = new Guid("72c24816-f32d-4f7f-8824-073007663e6b"),
                             Key = "Password",
                             Type = "General",
                             UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac1"),
-                            Value = "$2a$11$hI.W3KNJb2Vh2dknAr94luGYJK/bHO5DjmVBUWPOgokuiDGxVFD3O"
+                            Value = "$2a$11$/SIKSaNDvZTZyfzisN3ZeuDxUFs6NfGDn0mg5EsLWy1H4nc/4u9aK"
                         },
                         new
                         {
-                            Id = new Guid("bed461fb-3563-46fc-9071-53f01bf6a311"),
+                            Id = new Guid("550bca90-ede0-4c47-84a4-332a0f330ee7"),
                             Key = "IsActive",
                             Type = "General",
                             UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac1"),
@@ -187,7 +194,7 @@ namespace EFCoreForRazorPages.Migrations
                         },
                         new
                         {
-                            Id = new Guid("869de353-8700-4fa7-a305-23be87620815"),
+                            Id = new Guid("8318e258-7292-4386-9b5e-c853e9b8eca8"),
                             Key = "LoginRetries",
                             Type = "General",
                             UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac1"),
@@ -195,15 +202,15 @@ namespace EFCoreForRazorPages.Migrations
                         },
                         new
                         {
-                            Id = new Guid("8e147fd8-4606-4420-a69c-56ac9e7c92ab"),
+                            Id = new Guid("62091306-2013-4d1d-b7a0-a215b1f48d7c"),
                             Key = "Password",
                             Type = "General",
                             UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac2"),
-                            Value = "$2a$11$rcJcAXC43E88gnsl0kwssOntWGgyCR/hfg.C8QJjut8CDgH0lXrPS"
+                            Value = "$2a$11$uyvSQcY9dawfoS2cWZMyPejVxz8iG32NapPEXEeTGpRRi5Dd27XSq"
                         },
                         new
                         {
-                            Id = new Guid("2a1ba526-1cf0-4672-8a9b-0dec239eb31c"),
+                            Id = new Guid("cc56c16e-3c4e-406d-bb22-9fb7ca1be801"),
                             Key = "IsActive",
                             Type = "General",
                             UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac2"),
@@ -211,11 +218,52 @@ namespace EFCoreForRazorPages.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7b2b9f86-2dfd-442f-b859-0746e6fb6ca6"),
+                            Id = new Guid("584a815f-3243-4b57-b902-b14a1f48f265"),
                             Key = "LoginRetries",
                             Type = "General",
                             UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac2"),
                             Value = "0"
+                        });
+                });
+
+            modelBuilder.Entity("EFCoreForRazorPages.Infrastructure.Domain.Models.UserRole", b =>
+                {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("9ec7711c-3457-4fad-9b34-68f87258fd9b"),
+                            RoleId = new Guid("00965ecf-acae-46fe-8775-d7834b07fd96"),
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac0")
+                        },
+                        new
+                        {
+                            Id = new Guid("f0fbb9d4-abc3-4666-a775-cbe476b3bb7e"),
+                            RoleId = new Guid("1fb7085a-762f-440c-87de-59f75f85e934"),
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac1")
+                        },
+                        new
+                        {
+                            Id = new Guid("4a6dde45-2a1a-4c31-8e70-0bf2df844da4"),
+                            RoleId = new Guid("1fb7085a-762f-440c-87de-59f75f85e935"),
+                            UserId = new Guid("1d72f000-dbbd-419b-8af2-f571e1486ac2")
                         });
                 });
 
@@ -226,6 +274,21 @@ namespace EFCoreForRazorPages.Migrations
                         .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("EFCoreForRazorPages.Infrastructure.Domain.Models.UserRole", b =>
+                {
+                    b.HasOne("EFCoreForRazorPages.Infrastructure.Domain.Models.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
+
+                    b.HasOne("EFCoreForRazorPages.Infrastructure.Domain.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
